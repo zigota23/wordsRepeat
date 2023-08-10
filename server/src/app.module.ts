@@ -9,8 +9,10 @@ import { Vocabulary } from './vocabulary/vocabulary.model';
 import { UserModule } from './user/user.module';
 import { User } from './user/user.model';
 import { AuthModule } from './auth/auth.module';
+import { SettingsModule } from './settings/settings.module';
+import { Settings } from './settings/settings.model';
 
-const models = [Word, Vocabulary, User];
+const models = [Word, Vocabulary, User, Settings];
 
 @Module({
   imports: [
@@ -32,6 +34,7 @@ const models = [Word, Vocabulary, User];
     VocabularyModule,
     UserModule,
     AuthModule,
+    SettingsModule,
   ],
   controllers: [],
   providers: [],

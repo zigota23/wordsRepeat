@@ -1,7 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UserCreateDTO } from './dto/create.dto';
-import { User } from './user.model';
+import { Controller, Get, Param, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 
 @ApiTags('User')
@@ -9,10 +7,17 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @ApiResponse({ type: User })
-  @Post('')
-  async create(@Body() body: UserCreateDTO) {
-    const user = this.userService.create(body);
+  @Get(':id')
+  async getById(@Param('id') id: string) {
+    console.log(id);
+    const user = await this.userService.getById(id);
     return user;
   }
+
+  // @ApiResponse({ type: User })
+  // @Post('')
+  // async create(@Body() body: UserCreateDTO) {
+  //   const user = this.userService.create(body);
+  //   return user;
+  // }
 }

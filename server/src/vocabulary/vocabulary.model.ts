@@ -34,6 +34,6 @@ export class Vocabulary extends Model<Vocabulary, IVocabularyAttr> {
   description: string;
 
   @HasMany(() => Word)
-  // @ApiProperty({ type: [Word] })
+  @ApiProperty({ type: () => Word, isArray: true })
   words: Word[];
 }

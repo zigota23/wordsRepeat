@@ -3,11 +3,13 @@ import {
   Column,
   DataType,
   Default,
+  HasOne,
   Model,
   PrimaryKey,
   Table,
   Unique,
 } from 'sequelize-typescript';
+import { Settings } from 'src/settings/settings.model';
 import { v4 as uuidv4 } from 'uuid';
 
 interface IUserAttr {
@@ -48,4 +50,8 @@ export class User extends Model<User, IUserAttr> {
   @Column(DataType.STRING)
   @ApiProperty({ example: 'password' })
   password: string;
+
+  @HasOne(() => Settings)
+  @ApiProperty({ type: () => Settings })
+  settings: Settings;
 }

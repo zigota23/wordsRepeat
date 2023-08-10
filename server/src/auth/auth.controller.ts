@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { UserCreateDTO } from 'src/user/dto/create.dto';
 import { AuthService } from './auth.service';
 import { AuthLoginDTO } from './dto/login.dto';
 
@@ -15,8 +16,8 @@ export class AuthController {
   }
 
   @Post('/registration')
-  async registration(@Body() body: AuthLoginDTO) {
-    const token = await this.authService.login(body);
-    return token;
+  async registration(@Body() body: UserCreateDTO) {
+    const res = await this.authService.registration(body);
+    return res;
   }
 }

@@ -41,8 +41,4 @@ export class Word extends Model<Word, IWordCreationAttrs> {
   @ForeignKey(() => Vocabulary)
   @ApiProperty({ example: 'uuid', description: 'Vocabulary id' })
   vocabularyId: string;
-
-  @BelongsTo(() => Vocabulary)
-  // @ApiProperty({ type: Vocabulary, description: 'Vocabulary' })
-  vocabulary: Vocabulary;
 }
