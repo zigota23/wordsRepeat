@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Op } from 'sequelize';
 import { SettingsService } from 'src/settings/settings.service';
@@ -34,6 +34,10 @@ export class UserService {
       },
       include: { all: true },
     });
+
+    if (!user) {
+      throw new HttpException('Wrong credentions', HttpStatus.BAD_REQUEST);
+    }
 
     return user;
   }
